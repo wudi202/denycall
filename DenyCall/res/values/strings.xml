@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="denycall">denycall</string>
+    <string name="app_name">Denycall</string>
+    <string name="deniedcall">deniedcall</string>
+    <string name="permittedcall">permittedcall</string>
+    <string name="blacklist">blacklist</string>
+    <string name="whitelist">whitelist</string>
+    <string name="city">city</string>
+    <string name="invalidPhone">无效的电话号码</string>
+    <string name="str_ok">确认</string>
+    <string name="addblackList">增加黑名单</string>
+    <string name="addWhiteList">增加白名单</string>
+    <string name="hintPhoneInfo">备注</string>
+    <string name="filterPrefix">过滤号段</string>
+</resources>

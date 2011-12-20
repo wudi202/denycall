@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/denycall"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:text="屏蔽骚扰电话" />
+
+    <TextView
+        android:id="@+id/deniedarea"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:text="屏蔽区域" />
+
+    <TextView
+        android:id="@+id/permittedarea"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:text="未屏蔽区域" />
+
+    <TextView
+        android:id="@+id/blacklist"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:text="黑名单" />
+
+    <TextView
+        android:id="@+id/whitelist"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:text="白名单" />
+
+</LinearLayout>

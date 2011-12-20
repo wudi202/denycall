@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.lifetrip.denycall"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" 
+        android:debuggable="true" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".DenycallActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:label="@string/deniedcall"
+            android:name="DenyAreaActivity" >          
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />                
+                <data android:mimeType="vnd.android.cursor.dir/vnd.lifetrip.denyArea" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.lifetrip.denyArea" />
+            </intent-filter>            
+        </activity>
+        <activity
+            android:label="@string/city"
+            android:name="CityActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK" />                
+                <category android:name="android.intent.category.DEFAULT" />                
+                <data android:mimeType="vnd.android.cursor.dir/vnd.lifetrip.city" />
+            </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.lifetrip.city" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/blacklist"
+            android:name="BlackListAcitvity" >
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK" />    
+                <action android:name="android.intent.action.EDIT" />            
+                <category android:name="android.intent.category.DEFAULT" />                
+                <data android:mimeType="vnd.android.cursor.dir/vnd.lifetrip.blacklist" />
+            </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.lifetrip.blacklist" />
+            </intent-filter>
+        </activity> 
+        <activity
+            android:label="@string/blacklist"
+            android:name="AllBlackWhiteList" >
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK" />    
+                <action android:name="android.intent.action.EDIT" />            
+                <category android:name="android.intent.category.DEFAULT" />                
+                <data android:mimeType="vnd.android.cursor.dir/vnd.lifetrip.blacklist" />
+            </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.lifetrip.blacklist" />
+            </intent-filter>
+        </activity> 
+        <activity
+            android:label="@string/filterPrefix"
+            android:name="FilterPrefixActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK" />    
+                <action android:name="android.intent.action.EDIT" />            
+                <category android:name="android.intent.category.DEFAULT" />                
+                <data android:mimeType="vnd.android.cursor.dir/vnd.lifetrip.filterPrefix" />
+            </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.lifetrip.filterPrefix" />
+            </intent-filter>
+        </activity>                         
+        <provider android:name="AreaProvider" android:authorities="com.me.lifetrip.DenyCall"></provider>   
+    </application>
+
+</manifest>
