@@ -47,17 +47,21 @@ public class BlackListAcitvity extends Activity {
 		    EditText uiEditPhoneInfo = (EditText)findViewById(R.id.editInfo);
 		    
 		    uiEditPhoneNum.setText(curPhone);
-		    String[] projection = new String[] {FilterListMetaData._ID, FilterListMetaData.PHONE_INFO};
-		    String selection = FilterListMetaData.PHONE_NUMBER+"="+"\""+curPhone+"\"";
 		    
-		    Cursor cc = getContentResolver().query(parUri, projection, selection, null, null);
-		    startManagingCursor(cc);
-		    cc.moveToFirst();
+		    if ("" != curPhone)
+		    {	
+		        String[] projection = new String[] {FilterListMetaData._ID, FilterListMetaData.PHONE_INFO};
+		        String selection = FilterListMetaData.PHONE_NUMBER+"="+"\""+curPhone+"\"";
 		    
-		    if ((null != cc) && (0 != cc.getCount()))
-		    {
-		    	int columnIndex = cc.getColumnIndex(FilterListMetaData.PHONE_INFO);
-		    	curPhoneInfo = cc.getString(columnIndex);
+		        Cursor cc = getContentResolver().query(parUri, projection, selection, null, null);
+		    
+		        if ((null != cc) && (0 != cc.getCount()))
+		        {
+		    	    startManagingCursor(cc);
+		    	    cc.moveToFirst();
+		    	    int columnIndex = cc.getColumnIndex(FilterListMetaData.PHONE_INFO);
+		    	    curPhoneInfo = cc.getString(columnIndex);
+		        }
 		    }
 		    if (null != curPhoneInfo)
 		    {
@@ -95,6 +99,9 @@ public class BlackListAcitvity extends Activity {
 				}
 				else if (phoneNumber.length() < 11)
 				{
+					phoneNumber = phoneNumber+"0000";
+					if ((phoneNumber.length() < 7) || (phoneNumber.length() > 12))//如果希望屏蔽一个区段，需要将最后的四位置0
+					{
 					//这里表示输入的电话号码是无效的。可以弹出提示窗口。
 					new AlertDialog.Builder(BlackListAcitvity.this)
 					.setTitle("error")
@@ -110,6 +117,7 @@ public class BlackListAcitvity extends Activity {
 							})
 					.show();
 					return;
+					}
 				}
 				
 				//将数据插入数据库
@@ -153,7 +161,4 @@ public class BlackListAcitvity extends Activity {
 			Log.e(TAG, "error in create"+e.getMessage());
 		}		
 	}
-	
-	
-
 }

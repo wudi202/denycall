@@ -188,13 +188,17 @@ public class AreaProvider extends ContentProvider {
 			ZipInputStream zin = null;
 			ZipEntry zipEntry = null;
 			int byteRead = 0;			
+			int offset_read = 0;
+			int offset_write = 0;
 			zin = new ZipInputStream(in);
+			
 			try {
+		    zin.getNextEntry();
 			while ((byteRead = zin.read(buffer, 0, bufferSize)) != -1)
 			{
 				bout.write(buffer, 0, byteRead);
-				//offset_read += byteRead;
-				//offset_write += byteRead;
+				offset_read += byteRead;
+				offset_write += byteRead;
 				bout.flush();
 			}
 			}
@@ -351,7 +355,11 @@ public class AreaProvider extends ContentProvider {
 		        if (0 != temp.getCount())
 		        {
 		        	int columnIndex = temp.getColumnIndex(FilterListMetaData.IS_BLACK);
-		        	boolean isblacklist = (1==temp.getInt(columnIndex))?true:false;
+		        	boolean isblacklist = false;
+		        	if (1 == temp.getInt(columnIndex))
+		        	{
+		        		isblacklist =  true;
+		        	}
 		        	
 		        	columnIndex = temp.getColumnIndex(FilterListMetaData.PHONE_INFO);
 		        	String info = temp.getString(columnIndex);

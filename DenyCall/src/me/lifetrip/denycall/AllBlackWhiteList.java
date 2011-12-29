@@ -38,25 +38,31 @@ public class AllBlackWhiteList extends ListActivity {
             String[] projection = new String[] {FilterListMetaData._ID, FilterListMetaData.PHONE_NUMBER};
             String selection = FilterListMetaData.IS_BLACK + "=" + iBlack;
             String sortOrder = FilterListMetaData.PHONE_NUMBER+" ASC";
+            //第一次运行的时候，cFilterList为null
             Cursor cFilterList = getContentResolver().query(cur_uri, projection, selection, null, sortOrder);
-            startManagingCursor(cFilterList);
-            filterAdpater = new SimpleCursorAdapter(this, R.layout.deny_province, cFilterList, new String[]{FilterListMetaData.PHONE_NUMBER}, new int []{R.id.area});
-            this.setListAdapter(filterAdpater);
+            
+            if ((null != cFilterList) && (cFilterList.getCount() > 0))
+            {
+            	startManagingCursor(cFilterList);
+                filterAdpater = new SimpleCursorAdapter(this, R.layout.deny_province, cFilterList, new String[]{FilterListMetaData.PHONE_NUMBER}, new int []{R.id.area});
+                this.setListAdapter(filterAdpater);
+            }
+            //cFilterList.close();
             registerForContextMenu(getListView());
             /*
-            ListView ll = (ListView)this.getListView();
-            if (null != ll)
-            {
-            	ll.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
-					
-					@Override
-					public void onCreateContextMenu(ContextMenu menu, View v,
-							ContextMenuInfo menuInfo) {
-						// TODO Auto-generated method stub
-						menu.add(MENU_BASE+1, MENU_BASE+1, MENU_BASE+1, "删除");
-					}
-				});
-            }*/
+	            ListView ll = (ListView)this.getListView();
+	            if (null != ll)
+	            {
+	            	ll.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
+						
+						@Override
+						public void onCreateContextMenu(ContextMenu menu, View v,
+								ContextMenuInfo menuInfo) {
+							// TODO Auto-generated method stub
+							menu.add(MENU_BASE+1, MENU_BASE+1, MENU_BASE+1, "删除");
+						}
+					});
+	            }*/
         }
         catch (Exception e)
         {
@@ -83,6 +89,7 @@ public class AllBlackWhiteList extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
+		try {
 		switch (item.getItemId())
 		{
 			case MENU_BASE:
@@ -98,6 +105,12 @@ public class AllBlackWhiteList extends ListActivity {
 			default:
 				break;
 		}
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG, e.toString());
+		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -155,6 +168,25 @@ public class AllBlackWhiteList extends ListActivity {
 		MenuItem item = menu.add(MENU_BASE+1, MENU_BASE+1, MENU_BASE+1, "删除");
 		menu.setHeaderTitle("Delete!");
 		super.onCreateContextMenu(menu, v, menuInfo);				
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		try
+		{
+		    super.onDestroy();
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG, "destroy error");
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
 	}  
 	
 	

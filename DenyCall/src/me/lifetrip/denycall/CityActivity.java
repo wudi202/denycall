@@ -77,6 +77,7 @@ public class CityActivity extends ListActivity {
 		    Cursor c = getContentResolver().query(cur_uri, projection, selection, null, null);
 		    
 			startManagingCursor(c);
+			c.moveToFirst();
 			String[] cols = new String[]{DenyAreaMetaData.CITY, DenyAreaMetaData.ISDENIED};
 			int[] names = new int[]{R.id.city, R.id.city_chbox};
 			
@@ -169,12 +170,6 @@ public class CityActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private class a extends Activity implements android.content.DialogInterface.OnClickListener
-	{
-		
-	}
-
-
 	public class MyAdapter extends CursorAdapter
 	{
 		public MyAdapter(Context context, Cursor c) {
@@ -187,7 +182,6 @@ public class CityActivity extends ListActivity {
 			// TODO Auto-generated method stub
 			try {
 				Log.d("test for bindView", "test for bindView");
-				/*****
 			CheckBox isdeny = (CheckBox)view.findViewById(R.id.city_chbox);
 			
 			int columnIndex = cursor.getColumnIndex(DenyAreaMetaData.ISDENIED);
@@ -203,7 +197,6 @@ public class CityActivity extends ListActivity {
 			TextView city = (TextView)view.findViewById(R.id.city);
 			columnIndex = cursor.getColumnIndex(DenyAreaMetaData.CITY);
 			city.setText(cursor.getString(columnIndex));
-			*//////
 			}
 			catch (Exception e)
 			{
